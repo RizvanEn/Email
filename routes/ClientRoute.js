@@ -4,7 +4,7 @@ const ClientRoute=express.Router()
 
 // POST route to send emails
 ClientRoute.post('/sevenwonders', async (req, res) => {
-    const { from ,number,message,subject } = req.body;
+    const { name,from ,number,message,subject } = req.body;
 try{
       const transporter = nodemailer.createTransport({
         host: "smtp.hostinger.com",
@@ -21,6 +21,7 @@ try{
         from: 'info@sevenwondersplayschool.com',
         subject: `${subject}`,
         text: `You have an enquiry from your website\n
+        Name:${name}\n
         Email : ${from} \n
         Number:${number}\n
         Message : ${message}\n
