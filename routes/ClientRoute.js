@@ -21,7 +21,7 @@ try{
         from: 'info@sevenwondersplayschool.com',
         subject: `${subject}`,
         text: `You have an enquiry from your website\n
-        Name:${name}\n
+        <h1>Name:${name}\n</h1>
         Email : ${from} \n
         Number:${number}\n
         Message : ${message}\n
