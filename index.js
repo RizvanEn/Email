@@ -5,6 +5,7 @@ import bodyParser  from 'body-parser';
 import nodemailer from 'nodemailer'
 import dotenv from 'dotenv'
 import ClientRoute from './routes/ClientRoute.js';
+import cors from "cors";
 app.use(express.json());
 
 const corsOptions = {
