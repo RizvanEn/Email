@@ -17,7 +17,7 @@ try{
       });
   
       const mailOptions = {
-        to: "rizvanenego@gmail.com",
+        to: "contact@sevenwondersplayschool.com",
         from: 'info@sevenwondersplayschool.com',
         subject: `${subject}`,
         text: `You have an enquiry from your website\n
