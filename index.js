@@ -6,6 +6,8 @@ import nodemailer from 'nodemailer'
 import dotenv from 'dotenv'
 import ClientRoute from './routes/ClientRoute.js';
 import cors from "cors";
+const app = express();
+const PORT = process.env.PORT || 3000;
 app.use(express.json());
 
 const corsOptions = {
@@ -18,8 +20,7 @@ const corsOptions = {
 app.use(cors(corsOptions));
 dotenv.config()
 
-const app = express();
-const PORT = process.env.PORT || 3000;
+
 
 // Middleware
 app.use(bodyParser.json());
