@@ -1,8 +1,11 @@
 import express from "express";
 import nodemailer from 'nodemailer'
 const ClientRoute=express.Router()
+import dotenv from 'dotenv'
+dotenv.config()
 
 // POST route to send emails
+
 //seven wonders 
 ClientRoute.post('/sevenwonders', async (req, res) => {
     const { from ,message,subject,name,number } = req.body;
@@ -35,38 +38,39 @@ try{
       res.status(500).json({ message: 'Server error.' });
     }
   });
+
 //SSINFRA
-  ClientRoute.post('/ssiinfra', async (req, res) => {
-    const { from ,message,subject,name,number } = req.body;
+ClientRoute.post('/ssinfra', async (req, res) => {
+  const { from ,message,subject,name,number } = req.body;
 try{
-      const transporter = nodemailer.createTransport({
-        host: "smtp.hostinger.com",
-        port: 465,
-        secure: true, // true for port 465, false for other ports
-        auth: {
-          user:process.env.INFRA_USER,
-          pass: process.env.INFRA_PASS,
-        },
-      });
-  
-      const mailOptions = {
-        to: "info@ssiinfra.com",
-        from: 'contact@ssiinfra.com',
-        subject: `${subject}`,
-        text: `You have an enquiry from your website\n
-        Email : ${from} \n
-        Name : ${name}\n
-        Number : ${number}\n
-        Message : ${message}\n
-        `
-      };
-  
-      await transporter.sendMail(mailOptions);
-      res.status(200).json({ message: 'Email sent successfully.' });
-    } catch (error) {
-      res.status(500).json({ message: 'Server error.' });
-    }
-  });
+    const transporter = nodemailer.createTransport({
+      host: "smtp.hostinger.com",
+      port: 465,
+      secure: true, // true for port 465, false for other ports
+      auth: {
+        user:process.env.SSINFRA_USER,
+        pass:process.env.SSINFRA_PASS
+      },
+    });
+
+    const mailOptions = {
+      to: "contact@ssiinfra.com",
+      from: 'mail@ssiinfra.com',
+      subject: `${subject}`,
+      text: `You have an enquiry from your website\n
+      Email : ${from} \n
+      Name : ${name}\n
+      Number : ${number}\n
+      Message : ${message}\n
+      `
+    };
+
+    await transporter.sendMail(mailOptions);
+    res.status(200).json({ message: 'Email sent successfully.' });
+  } catch (error) {
+    res.status(500).json({ message: 'Server error.' });
+  }
+});
   //USPS
   ClientRoute.post('/usps', async (req, res) => {
     const { from ,message,subject,name,number } = req.body;
@@ -99,6 +103,7 @@ try{
       res.status(500).json({ message: 'Server error.' });
     }
   });
+
 //MULNIVASI
   ClientRoute.post('/mulnivasi', async (req, res) => {
     const { from ,message,subject,name,number } = req.body;
