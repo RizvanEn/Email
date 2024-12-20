@@ -7,6 +7,7 @@ import dotenv from 'dotenv'
 import ClientRoute from './routes/ClientRoute.js';
 import cors from "cors";
 const app = express();
+dotenv.config()
 const PORT = process.env.PORT || 3000;
 app.use(express.json());
 
@@ -18,7 +19,7 @@ const corsOptions = {
 };
 
 app.use(cors(corsOptions));
-dotenv.config()
+
 
 
 
