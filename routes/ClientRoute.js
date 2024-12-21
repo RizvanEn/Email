@@ -238,6 +238,39 @@ try{
   });
 
 
+  //JM AGRO TECH
+  ClientRoute.post('/jmagrotech', async (req, res) => {
+    const { from ,message,subject,name,number } = req.body;
+try{
+      const transporter = nodemailer.createTransport({
+        host: "smtp.hostinger.com",
+        port: 465,
+        secure: true, // true for port 465, false for other ports
+        auth: {
+          user:process.env.JM_AGRO_USER,
+          pass: process.env.JM_AGRO_PASS,
+        },
+      });
+  
+      const mailOptions = {
+        to: "contact@jmagrotechpvtltd.com",
+        from: 'info@jmagrotechpvtltd.com',
+        subject: `${subject}`,
+        text: `You have an enquiry from your website\n
+        Email : ${from} \n
+        Name : ${name}\n
+        Number : ${number}\n
+        Message : ${message}\n
+        `
+      };
+  
+      await transporter.sendMail(mailOptions);
+      res.status(200).json({ message: 'Email sent successfully.' });
+    } catch (error) {
+      res.status(500).json({ message: 'Server error.' });
+    }
+  });
+
 
 
 
