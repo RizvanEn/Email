@@ -55,7 +55,7 @@ try{
 
     const mailOptions = {
       to: "contact@ssiinfra.com",
-      from: 'mail@ssiinfra.com',
+      from: 'sameerksher@ssiinfra.com',
       subject: `${subject}`,
       text: `You have an enquiry from your website\n
       Email : ${from} \n
@@ -347,8 +347,8 @@ try{
           port: 465,
           secure: true, // true for port 465, false for other ports
           auth: {
-            user:process.env.SSS_USER,
-            pass: process.env.SSS_PASS,
+            user:"info@sssevasansthan.com",
+            pass: "Vloi&olkYt640",
           },
         });
     
@@ -367,6 +367,8 @@ try{
         await transporter.sendMail(mailOptions);
         res.status(200).json({ message: 'Email sent successfully.' });
       } catch (error) {
+        console.log(error);
+        
         res.status(500).json({ message: 'Server error.' });
       }
     });
