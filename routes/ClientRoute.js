@@ -39,7 +39,6 @@ try{
     }
   });
 
-//SSINFRA
 ClientRoute.post('/ssinfra', async (req, res) => {
   const { from ,message,subject,name,number } = req.body;
 try{
