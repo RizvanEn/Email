@@ -54,8 +54,8 @@ try{
     });
 
     const mailOptions = {
-      to: "contact@ssiinfra.com",
-      from: 'sameerksher@ssiinfra.com',
+      to: "contact.ssiinfra@gmail.com",
+      from: 'contact@ssiinfra.com',
       subject: `${subject}`,
       text: `You have an enquiry from your website\n
       Email : ${from} \n
