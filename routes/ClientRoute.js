@@ -439,4 +439,44 @@ ClientRoute.post("/aceenergie", async (req, res) => {
   }
 });
 
+// NEW LIFE HOSPITAL
+ClientRoute.post('/newlifeasptal', async (req, res) => {
+  console.log("Incoming Request:", req.body);
+  const { name, number, from, subject, service, date, message } = req.body;
+
+  try {
+    // Create transporter for nodemailer
+    const transporter = nodemailer.createTransport({
+      host: "smtp.hostinger.com",
+      port: 465,
+      secure: true, // true for port 465, false for other ports
+      auth: {
+        user: process.env.NEWLIFEASPTAL_USER,
+        pass: process.env.NEWLIFEASPTAL_PASS,
+      },
+    });
+
+    // Email Options
+    const mailOptions = {
+      to: "newlifehospitalrohru@gmail.com",
+      from: "contact@newlifeasptal.in",
+      subject: `${subject ? subject : "N/A"}`,
+      text: `You have an enquiry from your website\n
+              Email : ${from ? from : "N/A"} \n
+              Name : ${name ? name : "N/A"}\n
+              Number : ${number ? number : "N/A"}\n
+              Selected Service: ${service ? service : "N/A"}\n
+              Booking Date: ${date ? date : "N/A"}\n
+              Message : ${message ? message : "N/A"}\n
+          `,
+    };
+
+    // Send email
+    await transporter.sendMail(mailOptions);
+    res.status(200).json({ message: "Email sent successfully." });
+  } catch (error) {
+    console.error("Email Sending Error: ", error);
+    res.status(500).json({ message: "Server error. Email not sent." });
+  }
+});
 export default ClientRoute;
